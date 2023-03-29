@@ -14,16 +14,18 @@ exports.up = function (knex) {
     })
     .createTable("user_group", (table) => {
       table.increments("id").primary();
-      table.integer("user_id").unsigned().notNullable();
-      table.integer("group_id").unsigned().notNullable();
       table
-        .foreign("user_id")
+        .integer("user_id")
+        .unsigned()
+        .notNullable()
         .references("id")
         .inTable("user")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
       table
-        .foreign("group_id")
+        .integer("group_id")
+        .unsigned()
+        .notNullable()
         .references("id")
         .inTable("group")
         .onUpdate("CASCADE")

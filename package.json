@@ -9,6 +9,7 @@
     "dev": "nodemon server",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run",
     "full": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "keywords": [],
