@@ -4,6 +4,7 @@ exports.up = function (knex) {
       table.increments("id").primary();
       table.integer("google_id");
       table.string("username").notNullable();
+      table.string("password").notNullable();
       table.string("marker_colour").defaultTo("orange");
       table.timestamp("created_at").defaultTo(knex.fn.now());
     })
