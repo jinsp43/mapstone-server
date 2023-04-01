@@ -8,6 +8,11 @@ const { FRONTEND_URL } = process.env;
 const app = express();
 app.use(cors({ origin: FRONTEND_URL }));
 app.use(express.static("public"));
+app.use(express.json());
+
+const userRoutes = require("./routes/users");
+
+app.use("/users", userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);

@@ -49,4 +49,9 @@ module.exports = [
     user_id: 8,
     group_id: 3,
   },
+  {
+    id: 11,
+    user_id: 2,
+    group_id: 2,
+  },
 ];
