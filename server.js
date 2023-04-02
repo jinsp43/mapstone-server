@@ -11,8 +11,10 @@ app.use(express.static("public"));
 app.use(express.json());
 
 const userRoutes = require("./routes/users");
+const groupRoutes = require("./routes/groups");
 
 app.use("/users", userRoutes);
+app.use("/groups", groupRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
