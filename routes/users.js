@@ -45,26 +45,6 @@ router.post("/login", async (req, res) => {
     // Query the database for the user via username
     const user = await knex("user").where({ username: username }).first();
 
-    // non bcrypt way ================
-    // if (password === user.password) {
-    //   // Generate a JWT token for the user
-    //   const token = jwt.sign(
-    //     {
-    //       id: user.id,
-    //       sub: user.username,
-    //     },
-    //     process.env.JWT_SECRET,
-    //     { expiresIn: "8h" }
-    //   );
-
-    //   // And send it back to the frontend
-    //   res.json({ authToken: token });
-    // } else {
-    //   return res
-    //     .status(403)
-    //     .json({ message: "Username/Password combination is incorrect" });
-    // }
-
     // Ensure the password provided matches the encrypted password
     bcrypt.compare(password, user.password, function (_, success) {
       if (!success) {
@@ -95,7 +75,7 @@ router.post("/login", async (req, res) => {
 router.get("/profile", authorise, async (req, res) => {
   try {
     // Query the database for the user by comparing the ID in the JWT token against the ID of the user
-    const user = await knex("users").where({ id: req.token.id }).first();
+    const user = await knex("user").where({ id: req.token.id }).first();
 
     // Remove user password before sending it to client side (via the `delete` operator)
     delete user.password;
