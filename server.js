@@ -12,9 +12,11 @@ app.use(express.json());
 
 const userRoutes = require("./routes/users");
 const groupRoutes = require("./routes/groups");
+const markerRoutes = require("./routes/markers");
 
 app.use("/users", userRoutes);
 app.use("/groups", groupRoutes);
+app.use("/markers", markerRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);

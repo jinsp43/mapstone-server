@@ -37,8 +37,8 @@ exports.up = function (knex) {
       table.integer("user_id").unsigned().notNullable();
       table.integer("group_id").unsigned().notNullable();
       table.string("title").notNullable();
-      table.decimal("longitude", 4).notNullable();
-      table.decimal("latitude", 4).notNullable();
+      table.decimal("longitude", 10, 7).notNullable();
+      table.decimal("latitude", 10, 7).notNullable();
       table
         .foreign("user_id")
         .references("id")
