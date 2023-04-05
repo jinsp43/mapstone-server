@@ -36,7 +36,7 @@ exports.up = function (knex) {
       table.increments("id").primary();
       table.integer("user_id").unsigned().notNullable();
       table.integer("group_id").unsigned().notNullable();
-      table.string("title").notNullable();
+      table.string("name").notNullable();
       table.decimal("longitude", 10, 7).notNullable();
       table.decimal("latitude", 10, 7).notNullable();
       table
