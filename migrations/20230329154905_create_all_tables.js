@@ -39,6 +39,7 @@ exports.up = function (knex) {
       table.string("name").notNullable();
       table.decimal("longitude", 10, 7).notNullable();
       table.decimal("latitude", 10, 7).notNullable();
+      table.string("type");
       table
         .foreign("user_id")
         .references("id")

@@ -9,9 +9,20 @@ router.get("/:groupId", authorise, async (req, res) => {
   try {
     const requestedGroupId = req.params.groupId;
 
-    const markers = await knex("marker").where({
-      group_id: requestedGroupId,
-    });
+    const markers = await knex("marker")
+      .join("user", "marker.user_id", "user.id")
+      .where({
+        group_id: requestedGroupId,
+      })
+      .select(
+        "marker.id",
+        "marker.longitude",
+        "marker.latitude",
+        "marker.name",
+        "marker.type",
+        "user.marker_colour",
+        "user.username"
+      );
 
     res.json(markers);
   } catch (error) {
@@ -42,6 +53,23 @@ router.post("/:groupId", authorise, async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Could not add marker",
+    });
+  }
+});
+
+// DELETE a marker
+router.delete("/:markerId", authorise, async (req, res) => {
+  try {
+    const requestedMarkerId = req.params.markerId;
+
+    await knex("marker").where({ id: requestedMarkerId }).del();
+
+    res.status(204).json({
+      success: true,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Could not delete marker",
     });
   }
 });

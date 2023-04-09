@@ -79,7 +79,7 @@ router.post("/", authorise, async (req, res) => {
     });
 
     // Get the new group
-    const newGroup = await knex("group").where({ id: newGroupId[0] });
+    const newGroup = await knex("group").where({ id: newGroupId[0] }).first();
 
     // Add logged in user to the new group
     await knex("user_group").insert({
@@ -87,7 +87,7 @@ router.post("/", authorise, async (req, res) => {
       group_id: newGroupId[0],
     });
 
-    res.status(201).json(newGroup[0]);
+    res.status(201).json(newGroup);
   } catch (error) {
     res.status(500).json({ message: "Can't create new group" });
   }

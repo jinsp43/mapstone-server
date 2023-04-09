@@ -6,6 +6,7 @@ module.exports = [
     name: "Keu!",
     longitude: -0.0815,
     latitude: 51.5266,
+    type: "Restaurant",
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ module.exports = [
     name: "Island Poke",
     longitude: -0.0807,
     latitude: 51.5248,
+    type: "Restaurant",
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ module.exports = [
     name: "Hanwoo Village",
     longitude: -0.1041,
     latitude: 51.5367,
+    type: "Restaurant",
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ module.exports = [
     name: "Lina Stores",
     longitude: -0.125,
     latitude: 51.5372,
+    type: "Restaurant",
   },
   {
     id: 5,
@@ -38,6 +42,7 @@ module.exports = [
     name: "Relais de Venise",
     longitude: -0.151,
     latitude: 51.5182,
+    type: "Restaurant",
   },
   {
     id: 6,
@@ -46,6 +51,7 @@ module.exports = [
     name: "Din Tai Fung",
     longitude: -0.1527,
     latitude: 51.5146,
+    type: "Restaurant",
   },
   {
     id: 7,
@@ -54,6 +60,7 @@ module.exports = [
     name: "Jinjuu",
     longitude: -0.1392,
     latitude: 51.5127,
+    type: "Restaurant",
   },
   {
     id: 8,
@@ -62,5 +69,6 @@ module.exports = [
     name: "Subway",
     longitude: -0.081,
     latitude: 51.5249,
+    type: "Restaurant",
   },
 ];
