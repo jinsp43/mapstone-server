@@ -52,11 +52,31 @@ exports.up = function (knex) {
         .inTable("group")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
+    })
+    .createTable("comment", (table) => {
+      table.increments("id").primary();
+      table.integer("user_id").unsigned().notNullable();
+      table.integer("marker_id").unsigned().notNullable();
+      table.integer("rating");
+      table.string("comment");
+      table
+        .foreign("user_id")
+        .references("id")
+        .inTable("user")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
+      table
+        .foreign("marker_id")
+        .references("id")
+        .inTable("marker")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
     });
 };
 
 exports.down = function (knex) {
   return knex.schema
+    .dropTable("comment")
     .dropTable("marker")
     .dropTable("user_group")
     .dropTable("group")
