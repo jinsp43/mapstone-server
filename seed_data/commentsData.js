@@ -7,13 +7,6 @@ module.exports = [
     comment: "They have delicious banh mi, especially the Keu Classic!",
   },
   {
-    id: 2,
-    user_id: 1,
-    marker_id: 1,
-    rating: 5,
-    comment: "They also have aloe vera drink!",
-  },
-  {
     id: 3,
     user_id: 2,
     marker_id: 1,

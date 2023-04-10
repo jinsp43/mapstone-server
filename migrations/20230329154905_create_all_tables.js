@@ -40,6 +40,7 @@ exports.up = function (knex) {
       table.decimal("longitude", 10, 7).notNullable();
       table.decimal("latitude", 10, 7).notNullable();
       table.string("type");
+      table.timestamp("created_at").defaultTo(knex.fn.now());
       table
         .foreign("user_id")
         .references("id")
@@ -59,6 +60,7 @@ exports.up = function (knex) {
       table.integer("marker_id").unsigned().notNullable();
       table.integer("rating");
       table.string("comment");
+      table.timestamp("updated_at").defaultTo(knex.fn.now());
       table
         .foreign("user_id")
         .references("id")
@@ -71,7 +73,10 @@ exports.up = function (knex) {
         .inTable("marker")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
-    });
+    })
+    .raw(
+      "CREATE TRIGGER COMMENT_update BEFORE UPDATE ON comment FOR EACH ROW SET NEW.updated_at = NOW()"
+    );
 };
 
 exports.down = function (knex) {
