@@ -80,6 +80,8 @@ router.get("/profile", authorise, async (req, res) => {
     // Remove user password before sending it to client side (via the `delete` operator)
     delete user.password;
 
+    user.created_at = user.created_at.toLocaleDateString("en-GB");
+
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: "Can't fetch user profile" });
