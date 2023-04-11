@@ -21,7 +21,8 @@ router.get("/:groupId", authorise, async (req, res) => {
         "marker.name",
         "marker.type",
         "user.marker_colour",
-        "user.username"
+        "user.username",
+        "marker.user_id"
       );
 
     res.json(markers);
@@ -62,10 +63,21 @@ router.delete("/:markerId", authorise, async (req, res) => {
   try {
     const requestedMarkerId = req.params.markerId;
 
-    await knex("marker").where({ id: requestedMarkerId }).del();
+    const markerToDelete = await knex("marker")
+      .where({ id: requestedMarkerId })
+      .select("user_id")
+      .first();
 
-    res.status(204).json({
-      success: true,
+    if (markerToDelete.user_id === req.token.id) {
+      await knex("marker").where({ id: requestedMarkerId }).del();
+
+      return res.status(204).json({
+        success: true,
+      });
+    }
+
+    res.status(400).json({
+      message: "Only the user who made the marker can delete it",
     });
   } catch (error) {
     res.status(500).json({
