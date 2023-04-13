@@ -88,4 +88,19 @@ router.get("/profile", authorise, async (req, res) => {
   }
 });
 
+// Allow user to update marker_colour
+router.patch("/", authorise, async (req, res) => {
+  try {
+    await knex("user")
+      .where({ id: req.token.id })
+      .update({ ...req.body });
+
+    res.json(req.body);
+  } catch (error) {
+    res.status(500).json({
+      message: `Could not edit user: ${error.message}`,
+    });
+  }
+});
+
 module.exports = router;
